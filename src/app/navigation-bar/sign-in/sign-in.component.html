@@ -1,0 +1,39 @@
+<div class="row">
+    <div class="col-xs-12" style="text-align: center;">
+        <br>
+        <br>
+        <h1 style="font-size: 40px;"><u>Sign In</u></h1>
+        <br>
+        <div class="example-container">
+            <div class="form-container">
+              <form [formGroup]="loginForm" (submit)="submit()">
+                <mat-form-field class="form-field" style="width: 40%;" appearance="outline">
+                  <mat-label> E-mail
+                  </mat-label>
+                  <input matInput formControlName="email" required>
+                  <mat-error *ngIf="loginForm.controls.email.touched && loginForm.controls.email.invalid">
+                    <span *ngIf="loginForm.controls.email.errors.required">This field is mandatory.</span>
+                    <span *ngIf="loginForm.controls.email.errors.pattern">This field is invalid.</span>
+                  </mat-error>
+                </mat-form-field>
+                <br>
+                <mat-form-field class="form-field" style="width: 40%;" appearance="outline">
+                  <mat-label> Password
+                  </mat-label>
+                  <input matInput formControlName="password" type="password">
+                  <mat-error *ngIf="loginForm.controls.password.touched && loginForm.controls.password.invalid">
+                    <span *ngIf="loginForm.controls.password.errors.required">This field is mandatory.</span>
+                  </mat-error>
+                </mat-form-field>
+                <br>
+                <button mat-raised-button color="primary" style="width:15%;font-size: 20px;padding: 20px 0px;" type="submit">Log In</button>
+                <button mat-button color="accent" *ngIf="status!==''" style="margin-left:10px">{{status}}</button>
+              </form>
+              <br><br>
+              <hr>
+              <h3>Now a User, click here to sign-up</h3>
+              <button mat-raised-button routerLink="/app/signup" color="accent">Register Now</button>
+            </div>
+          </div>
+    </div>
+</div>

@@ -1,0 +1,45 @@
+<div class="row">
+    <div class="col-xs-12" style="text-align: center;">
+        @if(this.AS.currentLoggedInUser && this.AS.currentLoggedInUser.role==='admin')
+        {
+        <br><br>
+        <span>
+            <h1 style="font-size:40px">DATA
+                <button mat-icon-button class="iconbutton rotate" style="margin-left:80%"
+                    (click)="addUser()" color="accent"
+                    matTooltip="Add New User">
+                    <mat-icon class="icon-display">add</mat-icon>
+                </button>
+            </h1>
+        </span>
+        <hr>
+        <mat-tab-group class="data-table" mat-stretch-tabs="false" mat-align-tabs="center" animationDuration="400ms"
+        (selectedTabChange)="applyFilter($event)">
+            <br>
+            <mat-tab label="Everyone">
+                <app-display [(inputDataSource)]="dataSource"></app-display>
+            </mat-tab>
+            <mat-tab label="Teachers">
+                <app-display [(inputDataSource)]="dataSource"></app-display>
+            </mat-tab>
+            <mat-tab label="Students">
+                <app-display [(inputDataSource)]="dataSource"></app-display>
+            </mat-tab>
+        </mat-tab-group>
+
+        }
+        @else if(this.AS.currentLoggedInUser && this.AS.currentLoggedInUser.role!=='admin')
+        {
+            <br><br>
+            <h1>You must be an admin to access this page</h1>
+            <br>
+            <button mat-raised-button color="primary" routerLink="/app/signin" style="width:35%;font-size: 20px;padding: 20px 0px;">Log In with another account</button>
+        }
+        @else
+        {
+            <br><br>
+            <h1>You must be logged in to access this page</h1>
+            <button mat-raised-button color="primary" routerLink="/app/signin" style="width:15%;font-size: 20px;padding: 20px 0px;">Log In</button>
+        }
+    </div>
+</div>

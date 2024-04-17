@@ -1,0 +1,99 @@
+<div class="row">
+  <div class="col-xs-6" style="width:50%;"><h1 mat-dialog-title>Edit</h1></div>
+  <div class="col-xs-6" style="width:50%;text-align:right;"><button mat-icon-button mat-dialog-close style="margin:5px 5px;"><mat-icon color="accent">close</mat-icon></button></div>
+</div>
+<mat-dialog-content>
+    <form [formGroup]="form" (submit)="edit()">
+
+            <mat-form-field class="form-field" style="width: 100%;" appearance="fill">
+                <mat-label> Name
+                </mat-label>
+                <input matInput formControlName="name" required (keydown)="ignoreSpace($event)">
+                <mat-error *ngIf="form.controls.name.touched && isSubmitted">
+                  <span *ngIf="form.controls.name.errors?.required">This field is mandatory.</span>
+                </mat-error>
+            </mat-form-field>
+            <br>
+
+
+
+            <mat-form-field class="form-field" style="width: 100%;" appearance="fill">
+              <mat-label> E-mail
+              </mat-label>
+              <input matInput formControlName="email" required (keydown)="ignoreSpace($event)">
+              <mat-error *ngIf="form.controls.email.touched && form.controls.email.invalid && isSubmitted">
+                <span *ngIf="form.controls.email.errors?.required">This field is mandatory.</span>
+                <span *ngIf="form.controls.email.errors?.pattern">This field is invalid.</span>
+              </mat-error>
+            </mat-form-field>
+            <br><br>
+
+            <div class="row" style="text-align: left;">
+              <div class="col-xs-6" style="width:50%;border-right:3px solid rgb(103, 103, 103)">
+                <div style="width:60%;margin-left:40%">
+                <label id="gender-group"><h1 style="font-size:30px">Gender :</h1></label>
+                <mat-radio-group
+                  aria-labelledby="gender-group"
+                  formControlName="gender">
+                  <br>
+                    <mat-radio-button class="example-radio-button" value="male">Male</mat-radio-button>
+                    <br>
+                    <mat-radio-button class="example-radio-button" value="female">Female</mat-radio-button>
+                    <br>
+                    <mat-radio-button class="example-radio-button" value="prefer-not-to-say">Prefer Not To Say</mat-radio-button>
+                </mat-radio-group>
+                <mat-error *ngIf="form.controls.dob.touched && form.controls.dob.invalid && isSubmitted">
+                  <span *ngIf="form.controls.dob.errors?.required">This field is mandatory.</span>
+                </mat-error>
+                </div>
+              </div>
+              <div class="col-xs-6" style="width:40%;margin-left: 3%;">
+                <h1 style="font-size:30px">Hobbies :</h1>
+                <p>
+                  <mat-checkbox formControlName="hobbiesRunning">
+                    Running
+                  </mat-checkbox><br>
+                  <mat-checkbox formControlName="hobbiesReading">
+                    Reading
+                  </mat-checkbox><br>
+                  <mat-checkbox formControlName="hobbiesPainting">
+                    Painting
+                  </mat-checkbox><br>
+                  <mat-checkbox formControlName="hobbiesOthers">
+                    Others
+                  </mat-checkbox>
+                </p>
+              </div>
+            </div>
+            <br><br>
+
+            <mat-form-field class="form-field" style="width: 100%;" appearance="fill">
+            <mat-label> Date of Birth
+            </mat-label>
+            <input matInput formControlName="dob" [matDatepicker]="picker" [max]="today">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="form.controls.dob.touched && form.controls.dob.invalid && isSubmitted">
+            <span *ngIf="form.controls.dob.errors?.required">This field is mandatory.</span>
+            </mat-error>
+            </mat-form-field>
+            <br><br>
+
+            <mat-form-field appearance="fill" style="width:100%">
+                <mat-label>Role</mat-label>
+                <mat-select formControlName="role">
+                  <mat-option value="admin">Admin</mat-option>
+                  <mat-option value="teacher">Teacher</mat-option>
+                  <mat-option value="student">Student</mat-option>
+                </mat-select>
+                <mat-error *ngIf="form.controls.role.touched && isSubmitted">
+                    <span *ngIf="form.controls.role.errors?.required">This field is mandatory.</span>
+                  </mat-error>
+            </mat-form-field>
+            <br>
+          <button mat-raised-button color="accent" type="submit">Save</button>
+          <button mat-button mat-dialog-close>Cancel</button>
+    </form>
+
+</mat-dialog-content>

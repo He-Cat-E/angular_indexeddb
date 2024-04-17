@@ -1,0 +1,17 @@
+<div class="row">
+    <div class="col-xs-12" style="text-align: center;">
+        @if(this.AS.currentLoggedInUser)
+        {
+            <br><br><br>
+            <h1 style="font-size: 50px;">Welcome {{this.AS.currentLoggedInUser.name}} !</h1>
+            <hr style="height:8rem;">
+            <mat-icon style="transform: scale(15);" color="primary">home</mat-icon>
+        }
+        @else
+        {
+            <br><br>
+            <h1>You must be logged in to access this page</h1>
+            <button mat-raised-button color="primary" routerLink="/app/signin" style="width:15%;font-size: 20px;padding: 20px 0px;">Log In</button>
+        }
+    </div>
+</div>
